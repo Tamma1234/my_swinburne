@@ -15,7 +15,8 @@ class HomeController extends Controller
 
     public function index() {
         if (auth()->user() != "") {
-            return redirect()->route('home');
+            $user = auth()->user();
+            return redirect()->route('profile.detail', ['hash' => $user->hash_id]);
         } else {
             return view('clients.auth.login');
         }
@@ -98,5 +99,15 @@ class HomeController extends Controller
         $user->update($data);
 
         return back()->with('success', 'Update Account successful');
+    }
+
+    /**
+     * @param $file
+     * @return mixed
+     */
+    public function download($file) {
+        $file_name = public_path('qr-code/' . $file);
+
+        return \Response::download($file_name);
     }
 }

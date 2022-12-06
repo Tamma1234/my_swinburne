@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\AuthController;
+use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::post('/post-register', [HomeController::class, 'postRegister'])->name('post.register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/confirm/{email}', [HomeController::class, 'confirm'])->name('confirm');
+// Route admin
+Route::get('/admin', [MainController::class, 'index'])->name('admin');
 
 Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'clients'], function () {
@@ -29,5 +32,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/download/{file}', [HomeController::class, 'download'])->name('profile.download');
     });
 
-    // Route phần users
+    // Route phần admin
+
 });
