@@ -43,7 +43,8 @@ class HomeController extends Controller
             'email' => $email,
             'phone_number' => $request->phone_number,
             'password' => $hashPassword,
-            'is_active' => 0
+            'is_active' => 0,
+            'user_level' => 3
         ]);
         $id = $user->id;
         $hashId = Hash::make($id . 'swin');

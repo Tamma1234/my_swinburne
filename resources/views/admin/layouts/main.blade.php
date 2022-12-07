@@ -8,7 +8,7 @@
     <title>Swinburne | VN</title>
 
     <!-- Google Font: Source Sans Pro -->
-    @include('clients.templates.css')
+    @include('admin.templates.css')
 </head>
 
 <body
@@ -29,12 +29,12 @@
 </div>
 <div class="kt-grid kt-grid--hor kt-grid--root">
     <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
-        @include('clients.templates.nav-bar')
+        @include('admin.templates.nav-bar')
         <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
-            @include('clients.templates.header')
+            @include('admin.templates.header')
             @yield('content')
-            @include('clients.templates.footer')
-            @include('clients.templates.script')
+            @include('admin.templates.footer')
+            @include('admin.templates.script')
         </div>
         </div>
 </div>

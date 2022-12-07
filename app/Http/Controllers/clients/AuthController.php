@@ -19,7 +19,7 @@ class AuthController extends Controller
             $user = User::where('email', $email)->first();
 
             if ($user) {
-                if ($user->is_active == 1) {
+                if ($user->is_active == 1 && $user->user_level == 3) {
                     $credentials = $request->validate([
                         'email' => ['required'],
                         'password' => ['required'],

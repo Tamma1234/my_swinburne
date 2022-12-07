@@ -1,3 +1,7 @@
+<?php
+    $user = auth()->user();
+?>
+
 <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
     <!-- begin:: Header Menu -->
 
@@ -112,7 +116,7 @@
                 <!--begin: Navigation -->
                 <div class="kt-notification">
                     <div class="kt-notification__custom kt-space-between">
-                        <a href="{{route('logout.index')}}" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</a>
+                        <a href="{{route('admin.logout')}}" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</a>
                     </div>
                 </div>
 
