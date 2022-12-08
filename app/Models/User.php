@@ -24,19 +24,7 @@ class User extends Authenticatable
         'password',
         'phone_number',
         'address',
-        'parent_name',
-        'is_active',
-        'information_id',
-        'business_id',
-        'media_id',
-        'after_exam',
-        'transition',
-        'english_level',
-        'ielts',
-        'toefl',
-        'certificate',
-        'participation',
-        'scholarship_exam'
+        'user_level'
     ];
 
     /**

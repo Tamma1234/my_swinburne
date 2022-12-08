@@ -12,32 +12,45 @@
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                Create Exam Form Layout
+                                Create Answers Form Layout
                             </h3>
                         </div>
                     </div>
                     <!--begin::Form-->
-                    <form class="kt-form kt-form--label-right" action="{{ route('question.store') }}"
+                    <form class="kt-form kt-form--label-right" action="{{ route('answers.store') }}"
                           enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="kt-portlet__body">
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label>Question Name:</label>
-                                    <input type="text" name="question_type_name" class="form-control"
+                                    <label>Answers Name:</label>
+                                    <input type="text" name="answers" class="form-control"
                                            id="exampleInputEmail1"
                                            placeholder="Enter Question Type Name" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label>Question Content:</label>
-                                    <input type="text" name="question_content" class="form-control"
-                                           id="exampleInputEmail1"
-                                           placeholder="Enter Question Content" >
+                                    <label>Question Name:</label>
+                                    <select class="form-control" name="question_id-name">
+                                        <option value="">Choose Question</option>
+                                        @foreach($questions as $item)
+                                            <option value="{{ $item->id }}">{{ $item->question_type_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <label>Question Content:</label>
+                                    <select class="form-control" name="question_id-name">
+                                        <option value="">Choose Question</option>
+                                        @foreach($questions as $item)
+                                            <option value="{{ $item->id }}">{{ $item->question_content }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label>File Image:</label>
@@ -51,7 +64,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="{{route('exam.question')}}" class="btn btn-secondary">Cancel</a>
+                                        <a href="{{route('answers.index')}}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </div>
                             </div>

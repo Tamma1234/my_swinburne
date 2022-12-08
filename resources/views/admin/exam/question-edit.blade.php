@@ -46,28 +46,28 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="card-border-primary mb-3 col-md-12">
-                                    <div class="row" id="modul-row">
-                                        <div class="kt-checkbox-list">
-                                            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--success">
-                                                <input class="checkbox_wraper custom-control-input" type="text">Answers
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row" id="permission-row">
-                                        @foreach($answers as $item)
-                                            <div class="form-group col-md-3" >
-                                                        <input type="text"  name="office_id[]"
-                                                               class="form-control"
-                                                               value="{{$item->answers}}">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="card-border-primary mb-3 col-md-12">--}}
+{{--                                    <div class="row" id="modul-row">--}}
+{{--                                        <div class="kt-checkbox-list">--}}
+{{--                                            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--success">--}}
+{{--                                                <input class="checkbox_wraper custom-control-input" type="text">Answers--}}
+{{--                                            </label>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-group row" id="permission-row">--}}
+{{--                                        @foreach($answers as $item)--}}
+{{--                                            <div class="form-group col-md-3" >--}}
+{{--                                                        <input type="text"  name="office_id[]"--}}
+{{--                                                               class="form-control"--}}
+{{--                                                               value="{{$item->answers}}">--}}
+{{--                                            </div>--}}
+{{--                                        @endforeach--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="kt-portlet__foot">
                             <div class="kt-form__actions">
                                 <div class="row">

@@ -3,24 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\EditUserRequest;
-use App\Models\Office;
-use App\Models\Roles;
+use App\Models\StudentUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
-class UserController extends Controller
+class StudentUserController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.student-user.create');
     }
 
     /**
@@ -32,8 +28,8 @@ class UserController extends Controller
     {
         try {
             DB::beginTransaction();
-            $users = new User();
-            $user = $users->create([
+            $students = new StudentUser();
+            $students->create([
                 'full_name' => $request->full_name,
                 'email' => $request->email,
                 'address' => $request->address,
@@ -53,8 +49,8 @@ class UserController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Request $request) {
-        $user = User::find($request->id);
-        return view('admin.users.edit', compact( 'user'));
+        $student = StudentUser::find($request->id);
+        return view('admin.student-user.edit', compact( 'student'));
     }
 
     /**
@@ -65,8 +61,8 @@ class UserController extends Controller
     public function update(Request $request) {
         try {
             DB::beginTransaction();
-            $user = User::find($request->id);
-            $user->update([
+            $student = StudentUser::find($request->id);
+            $student->update([
                 'full_name' => $request->full_name,
                 'email' => $request->email,
                 'address' => $request->address,
@@ -74,7 +70,7 @@ class UserController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('admin.dashboard')->with('msg-update', 'Update Account Successfuly');
+            return redirect()->route('admin.dashboard')->with('msg-update', 'Update Account Student Successfuly');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message :' . $exception->getMessage() . '--GetLine' . $exception->getLine());
@@ -87,10 +83,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete(Request $request) {
-        $user = User::find($request->id);
-        $user->delete();
+        $student = StudentUser::find($request->id);
+        $student->delete();
 
-        return redirect()->route('admin.dashboard')->with('msg-delete', 'Delete the Users and cancel in the trash');
+        return redirect()->route('admin.dashboard')->with('msg-delete', 'Delete the Student User and cancel in the trash');
     }
 
     /**
@@ -98,9 +94,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function userTrashOut(Request $request) {
-        $users = User::onlyTrashed()->get();
-        return view('admin.users.trash', compact('users'));
+    public function studentTrashOut (Request $request) {
+        $students = StudentUser::onlyTrashed()->get();
+        return view('admin.student-user.trash', compact('students'));
     }
 
     /**
@@ -109,7 +105,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function deleteCompletely(Request $request) {
-        User::withTrashed()->where('id', $request->id)->forceDelete();
-        return redirect()->route('users.trash')->with('msg-trash', 'Delete Account Successfully');
+        StudentUser::withTrashed()->where('id', $request->id)->forceDelete();
+        return redirect()->route('student.trash')->with('msg-trash', 'Delete Account Successfully');
     }
 }

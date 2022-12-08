@@ -12,8 +12,12 @@
 											<i class="kt-font-brand flaticon2-line-chart"></i>
 										</span>
                     <h3 class="kt-portlet__head-title">
-                        List User
+                        List Student Register
                     </h3>
+                </div>
+                <div class="col-md-6 col-4 align-self-center">
+                    <a href="{{ route('student.create') }}" class="btn pull-right hidden-sm-down btn-success"><i
+                            class="mdi mdi-plus-circle"></i> Create</a>
                 </div>
             </div>
             <div class="kt-portlet__body" id="form-table-search">
@@ -25,23 +29,21 @@
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Address</th>
-                        <th>Major</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($users as $user)
+                    @foreach($students as $item)
                         <tr>
-                            <td>{{$user->full_name}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->phone_number}}</td>
-                            <td>{{$user->address}}</td>
-                            <td>{{$user->information_id}}</td>
+                            <td>{{$item->full_name}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>{{$item->phone_number}}</td>
+                            <td>{{$item->address}}</td>
                             <td class="text-nowrap">
-                                <a href="{{ route('users.edit', ['id' => $user->id]) }}" data-toggle="tooltip"
+                                <a href="{{ route('student.edit', ['id' => $item->id]) }}" data-toggle="tooltip"
                                    data-original-title="Edit"><i class="flaticon-edit"></i>
                                 </a>
-                                <a href="{{ route('users.delete', ['id' => $user->id]) }}" data-toggle="tooltip"
+                                <a href="{{ route('student.trash', ['id' => $item->id]) }}" data-toggle="tooltip"
                                    data-original-title="Close"> <i class="flaticon-delete"></i> </a>
                             </td>
                         </tr>

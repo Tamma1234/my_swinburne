@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\StudentUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,13 +60,13 @@ class MainController extends Controller
 
     public function dashboard()
     {
-        $users = User::where('user_level', 3)->get();
-        return view('admin.dashboard.index', compact('users'));
+        $students = StudentUser::all();
+        return view('admin.dashboard.index', compact('students'));
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('admin');
+        return redirect()->route('home');
     }
 }

@@ -154,7 +154,7 @@
 <script src="{{asset('assets/plugins/custom/tinymce/themes/silver/theme.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/plugins/custom/tinymce/themes/mobile/theme.js')}}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/pages/custom/login/login-general.js') }}" type="text/javascript"></script>
-
+<script src="{{ asset('assets/js/pages/crud/datatables/data-sources/javascript.js') }}" type="text/javascript"></script>
 <!--end:: Vendor Plugins for custom pages -->
 
 <!--end::Global Theme Bundle -->
@@ -219,4 +219,27 @@
         $(this).parents().find('.checkbox_wraper').prop('checked', $(this).prop('checked'));
     });
 
+        $(document).ready(function () {
+            var table = $('#example').DataTable({pageLength: 10});
+
+            // Get the page info, so we know what the last is
+            var pageInfo = table.page.info();
+            // Set the ending interval to the last page
+            endInt = pageInfo.end;
+            // Current page
+            currentInt = 0;
+            // interval = setInterval(function () {
+            //     // "Next" ...
+            //     table.page(currentInt).draw('page');
+            //
+            //     // Increment the current page int
+            //     currentInt++;
+            //
+            //     // If were on the last page, reset the currentInt to the first page #
+            //     if (currentInt === pageInfo.pages) {
+            //         currentInt = 0;
+            //     }
+            //     // console.log(currentInt);
+            // }, 10000); // 3 seconds
+        });
 </script>
