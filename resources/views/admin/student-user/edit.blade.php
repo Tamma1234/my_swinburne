@@ -38,14 +38,6 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label>Address:</label>
-                                    <input type="text" name="address" class="form-control"
-                                           placeholder="Enter User Address" value="{{$student->address}}">
-                                </div>
-                                @error('address')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                                <div class="col-lg-6">
                                     <label>Phone Number:</label>
                                     <input type="text" name="phone_number" class="form-control"
                                            placeholder="Enter Phone Number" value="{{$student->phone_number}}">
@@ -53,7 +45,52 @@
                                 @error('phone_number')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
+                                <div class="col-lg-6">
+                                    <label>Province:</label>
+                                    <select class="form-control choose province" id="city" name="province_id">
+                                        <option value="">Choose Province</option>
+                                        @foreach($provinces as $item)
+                                            <option {{ $student->provinces->id ==  $item->id ? "selected" : "" }}
+                                                value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('province_id')
+                                <div class="alert alert-solid-danger alert-bold">{{ $message }}</div>
+                                @enderror
                             </div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label>District:</label>
+                                    <select class="form-control choose district" id="district" name="district_id">
+                                        @foreach($districts as $item)
+                                            <option {{ $student->district->id == $item->id ? "selected" : "" }} value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('district_id')
+                                <div class="alert alert-solid-danger alert-bold">{{ $message }}</div>
+                                @enderror
+                                <div class="col-lg-6">
+                                    <label>Wards:</label>
+                                    <select class="form-control ward" name="ward_id" id="ward">
+                                        @foreach($wards as $item)
+                                            <option {{ $student->wards->id ==  $item->id ? "selected" : "" }} value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('ward_id')
+                                <div class="alert alert-solid-danger alert-bold">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Address:</label>
+                                <input type="text" name="address" class="form-control"
+                                       placeholder="Enter User Address" value="{{$student->address}}">
+                            </div>
+                            @error('address')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="kt-portlet__foot">
                             <div class="kt-form__actions">

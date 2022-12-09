@@ -12,11 +12,11 @@
 											<i class="kt-font-brand flaticon2-line-chart"></i>
 										</span>
                     <h3 class="kt-portlet__head-title">
-                        List Province
+                        List District
                     </h3>
                 </div>
                 <div class="col-md-6 col-4 align-self-center">
-                    <a href="{{ route('province.create') }}" class="btn pull-right hidden-sm-down btn-success"><i
+                    <a href="{{ route('district.create') }}" class="btn pull-right hidden-sm-down btn-success"><i
                             class="mdi mdi-plus-circle"></i> Create</a>
                 </div>
             </div>
@@ -29,22 +29,24 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Name</th>
-                                <th>type</th>
+                                <th>Type</th>
+                                <th>Province</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($provinces as $item)
+                            @foreach($districts as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->type}}</td>
+                                    <td>{{$item->provinces ? $item->provinces->name : ""}}</td>
                                     <td class="text-nowrap">
-                                        <a href="{{ route('province.edit', ['id' => $item->id]) }}" data-toggle="tooltip"
+                                        <a href="{{ route('district.edit', ['id' => $item->id]) }}" data-toggle="tooltip"
                                            data-original-title="Edit"><i class="flaticon-edit"></i>
                                         </a>
-                                        <a href="{{ route('province.trash', ['id' => $item->id]) }}" data-toggle="tooltip"
-                                           data-original-title="Close"> <i class="flaticon-delete"></i> </a>
+{{--                                        <a href="{{ route('province.trash', ['id' => $item->id]) }}" data-toggle="tooltip"--}}
+{{--                                           data-original-title="Close"> <i class="flaticon-delete"></i> </a>--}}
                                     </td>
                                 </tr>
                             @endforeach

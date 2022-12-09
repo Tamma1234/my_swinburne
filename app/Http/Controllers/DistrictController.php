@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\District;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class ProvinceController extends Controller
+class DistrictController extends Controller
 {
     public function index() {
-        $provinces = Province::all();
-        return view('admin.province.index', compact('provinces'));
+        $districts = District::all();
+        return view('admin.districts.index', compact('districts'));
     }
 
     /**
@@ -21,7 +20,8 @@ class ProvinceController extends Controller
      */
     public function create()
     {
-        return view('admin.province.create');
+        $provinces = Province::all();
+        return view('admin.districts.create', compact('provinces'));
     }
 
     /**
@@ -33,13 +33,14 @@ class ProvinceController extends Controller
     {
         try {
             DB::beginTransaction();
-            $province = new District();
-            $province->create([
+            $district = new District();
+            $district->create([
                 'name' => $request->name,
-                'type' => $request->type
+                'type' => $request->type,
+                'province_id' => $request->province_id
             ]);
             DB::commit();
-            return redirect()->route('province.index')->with('msg-add', 'Create Province Successfuly');
+            return redirect()->route('district.index')->with('msg-add', 'Create District Successfuly');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message :' . $exception->getMessage() . '--GetLine' . $exception->getLine());
@@ -52,8 +53,8 @@ class ProvinceController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Request $request) {
-        $province = Province::find($request->id);
-        return view('admin.province.edit', compact( 'province'));
+        $district = District::find($request->id);
+        return view('admin.districts.edit', compact( 'district'));
     }
 
     /**
@@ -64,14 +65,15 @@ class ProvinceController extends Controller
     public function update(Request $request) {
         try {
             DB::beginTransaction();
-            $province = Province::find($request->id);
-            $province->update([
+            $district = District::find($request->id);
+            $district->update([
                 'name' => $request->name,
                 'type' => $request->type,
+                'province_id' => $request->province_id
             ]);
 
             DB::commit();
-            return redirect()->route('province.index')->with('msg-update', 'Update Province Successfuly');
+            return redirect()->route('district.index')->with('msg-update', 'Update District Successfuly');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message :' . $exception->getMessage() . '--GetLine' . $exception->getLine());
@@ -84,10 +86,10 @@ class ProvinceController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete(Request $request) {
-        $province = Province::find($request->id);
-        $province->delete();
+        $district = District::find($request->id);
+        $district->delete();
 
-        return redirect()->route('province.index')->with('msg-delete', 'Delete the Province and cancel in the trash');
+        return redirect()->route('district.index')->with('msg-delete', 'Delete the District and cancel in the trash');
     }
 
     /**
@@ -95,9 +97,9 @@ class ProvinceController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function studentTrashOut (Request $request) {
-        $provinces = Province::onlyTrashed()->get();
-        return view('admin.province.trash', compact('provinces'));
+    public function districtTrashOut (Request $request) {
+        $districts = District::onlyTrashed()->get();
+        return view('admin.districts.trash', compact('districts'));
     }
 
     /**
@@ -106,7 +108,7 @@ class ProvinceController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function deleteCompletely(Request $request) {
-        Province::withTrashed()->where('id', $request->id)->forceDelete();
-        return redirect()->route('district.trash')->with('msg-trash', 'Delete Account Successfully');
+        District::withTrashed()->where('id', $request->id)->forceDelete();
+        return redirect()->route('district.trash')->with('msg-trash', 'Delete District Successfully');
     }
 }

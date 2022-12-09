@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\AuthController;
 use App\Http\Controllers\Admin\MainController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StudentUserController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\AnswerController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\WardsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +47,7 @@ use App\Http\Controllers\Admin\AnswerController;
 Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/dashboard', [MainController::class, 'dashboard'])->name('admin.dashboard');
+        Route::post('/select-address', [UserController::class, 'selectAddress'])->name('select.address');
 
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('users.index');
@@ -104,6 +106,30 @@ Route::middleware('auth')->group(function () {
             Route::get('user-trashout', [ProvinceController::class, 'provinceTrashOut'])->name('province.trash');
             // Delete user completely
             Route::get('delete-completely/{id}', [ProvinceController::class, 'deleteCompletely'])->name('province.delete.completely');
+        });
+
+        Route::group(['prefix' => 'district'], function () {
+            Route::get('/', [DistrictController::class, 'index'])->name('district.index');
+            Route::get('/create', [DistrictController::class, 'create'])->name('district.create');
+            Route::post('/store', [DistrictController::class, 'store'])->name('district.store');
+            Route::get('/edit/{id}', [DistrictController::class, 'edit'])->name('district.edit');
+            Route::post('/update/{id}', [DistrictController::class, 'update'])->name('district.update');
+            Route::get('delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
+            Route::get('district-trashout', [DistrictController::class, 'districtTrashOut'])->name('district.trash');
+            // Delete user completely
+            Route::get('delete-completely/{id}', [DistrictController::class, 'deleteCompletely'])->name('district.delete.completely');
+        });
+
+        Route::group(['prefix' => 'wards'], function () {
+            Route::get('/', [WardsController::class, 'index'])->name('wards.index');
+            Route::get('/create', [WardsController::class, 'create'])->name('wards.create');
+            Route::post('/store', [WardsController::class, 'store'])->name('wards.store');
+            Route::get('/edit/{id}', [WardsController::class, 'edit'])->name('wards.edit');
+            Route::post('/update/{id}', [WardsController::class, 'update'])->name('wards.update');
+            Route::get('delete/{id}', [WardsController::class, 'delete'])->name('wards.delete');
+            Route::get('wards-trashout', [WardsController::class, 'wardsTrashOut'])->name('wards.trash');
+            // Delete user completely
+            Route::get('delete-completely/{id}', [WardsController::class, 'deleteCompletely'])->name('wards.delete.completely');
         });
     });
     // Route phần admin

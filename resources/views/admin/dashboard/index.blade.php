@@ -28,6 +28,9 @@
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
+                        <th>City</th>
+                        <th>District</th>
+                        <th>Ward</th>
                         <th>Address</th>
                         <th>Actions</th>
                     </tr>
@@ -38,6 +41,9 @@
                             <td>{{$item->full_name}}</td>
                             <td>{{$item->email}}</td>
                             <td>{{$item->phone_number}}</td>
+                            <td>{{ $item->provinces ? $item->provinces->name : "" }}</td>
+                            <td>{{$item->district ? $item->district->name : "" }}</td>
+                            <td>{{$item->wards ? $item->wards->name : "" }}</td>
                             <td>{{$item->address}}</td>
                             <td class="text-nowrap">
                                 <a href="{{ route('student.edit', ['id' => $item->id]) }}" data-toggle="tooltip"

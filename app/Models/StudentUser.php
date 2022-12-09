@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StudentUser extends Model
 {
+    use HasFactory, SoftDeletes;
     protected $table = "student_user";
 
-    protected $fillable =[
+    protected $fillable = [
         'full_name',
         'email',
         'password',
@@ -18,17 +19,31 @@ class StudentUser extends Model
         'address',
         'parent_name',
         'is_active',
-        'information_id',
-        'business_id',
-        'media_id',
+        'branch_id',
         'after_exam',
         'transition',
         'english_level',
         'ielts',
         'toefl',
+        'hash_id',
+        'path',
         'certificate',
         'participation',
-        'scholarship_exam'
+        'scholarship_exam',
+        'province_id',
+        'district_id',
+        'ward_id'
     ];
-    use HasFactory, SoftDeletes;
+
+    public function provinces() {
+        return $this->belongsTo(Province::class, 'province_id', 'id');
+    }
+
+    public function district() {
+        return $this->belongsTo(District::class, 'district_id', 'id');
+    }
+
+    public function wards() {
+        return $this->belongsTo(Wards::class, 'ward_id', 'id');
+    }
 }

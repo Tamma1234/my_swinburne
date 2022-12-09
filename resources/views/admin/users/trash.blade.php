@@ -15,7 +15,7 @@
         <!--begin::Section-->
         <div class="kt-section">
             <div class="kt-section__content">
-                <table class="table">
+                <table class="table table-striped- table-bordered table-hover table-checkable" id="example"">
                     <thead class="thead-light">
                     <tr>
                         <th>ID</th>

@@ -25,35 +25,65 @@
                                     <label>Full Name:</label>
                                     <input type="text" name="full_name" class="form-control" id="exampleInputEmail1"
                                            placeholder="Enter User login">
+                                    @error('full_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('full_name')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                                <div class="col-lg-6">
-                                    <label>Address:</label>
-                                    <input type="text" name="address" class="form-control" id="exampleInputEmail1"
-                                           placeholder="Enter User surname">
-                                </div>
-                                @error('address')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label>User Email:</label>
+                                    <label>Email:</label>
                                     <input type="text" name="email" class="form-control" id="exampleInputEmail1"
                                            placeholder="Enter User Email">
+                                    @error('email')
+                                    <div class="alert alert-solid-danger alert-bold">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('email')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                                 <div class="col-lg-6">
                                     <label>Phone Number:</label>
                                     <input type="text" name="phone_number" class="form-control" id="exampleInputEmail1"
                                            placeholder="Phone Number">
+                                    @error('phone_number')
+                                    <div class="alert alert-solid-danger alert-bold">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('phone_number')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label>Province:</label>
+                                    <select class="form-control choose province" id="city" name="province_id">
+                                        <option value="">Choose Province</option>
+                                        @foreach($provinces as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('province_id')
+                                <div class="alert alert-solid-danger alert-bold">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label>District:</label>
+                                    <select class="form-control choose district" id="district" name="district_id">
+                                        <option value="">Choose District</option>
+
+                                    </select>
+                                </div>
+                                @error('district_id')
+                                <div class="alert alert-solid-danger alert-bold">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label>Wards:</label>
+                                    <select class="form-control ward" name="ward_id" id="ward">
+                                        <option value="">Choose Wards</option>
+
+                                    </select>
+                                </div>
+                                @error('ward_id')
+                                <div class="alert alert-solid-danger alert-bold">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>

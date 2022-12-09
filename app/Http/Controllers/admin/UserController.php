@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\EditUserRequest;
+use App\Models\District;
 use App\Models\Office;
+use App\Models\Province;
 use App\Models\Roles;
 use App\Models\User;
+use App\Models\Wards;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -18,9 +21,42 @@ class UserController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
+    public function index()
+    {
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function selectAddress(Request $request)
+    {
+        $data = $request->all();
+        if ($data['action']) {
+            $output = "";
+            if ($data['action'] == 'city') {
+                $districts = District::where('province_id', $data['id'])->orderby('id', 'ASC')->get();
+                foreach ($districts as $item) {
+                    $output.='<option value="'.$item->id.'">'.$item->name.'</option>';
+                }
+            } else {
+                $wards = Wards::where('district_id', $data['id'])->orderby('id', 'ASC')->get();
+                foreach ($wards as $item) {
+                    $output.='<option value="'.$item->id.'">'.$item->name.'</option>';
+                }
+            }
+        }
+        return $output;
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function create()
     {
-        return view('admin.users.create');
+        $provinces = Province::all();
+        return view('admin.users.create', compact('provinces'));
     }
 
     /**

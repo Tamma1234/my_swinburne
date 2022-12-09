@@ -6,7 +6,7 @@
     <!-- begin:: Aside -->
     <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
         <div class="kt-aside__brand-logo">
-            <a href="index.html">
+            <a href="#">
                 <img alt="Logo" src="{{asset('assets/images/logo-swb.png')}}"/>
             </a>
         </div>
@@ -177,7 +177,7 @@
                                 <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
                                     <ul class="kt-menu__subnav">
                                         <li class="kt-menu__item " aria-haspopup="true"><a
-                                                href="{{ route('admin.dashboard') }}" class="kt-menu__link "><i
+                                                href="{{ route('users.index') }}" class="kt-menu__link "><i
                                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                                     class="kt-menu__link-text">List</span></a></li>
                                         <li class="kt-menu__item " aria-haspopup="true"><a
@@ -253,6 +253,50 @@
                                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                                     class="kt-menu__link-text">Create</span></a></li> <li class="kt-menu__item " aria-haspopup="true"><a
                                                 href="{{ route('province.trash') }}" class="kt-menu__link "><i
+                                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                                    class="kt-menu__link-text">Account deleted</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                                data-ktmenu-submenu-toggle="hover">
+                                <a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i
+                                        class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                        class="kt-menu__link-text">Districts</span><i
+                                        class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+                                    <ul class="kt-menu__subnav">
+                                        <li class="kt-menu__item " aria-haspopup="true"><a
+                                                href="{{ route('district.index') }}" class="kt-menu__link "><i
+                                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                                    class="kt-menu__link-text">List</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a
+                                                href="{{ route('district.create') }}" class="kt-menu__link "><i
+                                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                                    class="kt-menu__link-text">Create</span></a></li> <li class="kt-menu__item " aria-haspopup="true"><a
+                                                href="{{ route('district.trash') }}" class="kt-menu__link "><i
+                                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                                    class="kt-menu__link-text">Account deleted</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                                data-ktmenu-submenu-toggle="hover">
+                                <a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i
+                                        class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                        class="kt-menu__link-text">Wards</span><i
+                                        class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+                                    <ul class="kt-menu__subnav">
+                                        <li class="kt-menu__item " aria-haspopup="true"><a
+                                                href="{{ route('wards.index') }}" class="kt-menu__link "><i
+                                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                                    class="kt-menu__link-text">List</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a
+                                                href="{{ route('wards.create') }}" class="kt-menu__link "><i
+                                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                                    class="kt-menu__link-text">Create</span></a></li> <li class="kt-menu__item " aria-haspopup="true"><a
+                                                href="{{ route('wards.trash') }}" class="kt-menu__link "><i
                                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                                     class="kt-menu__link-text">Account deleted</span></a></li>
                                     </ul>
