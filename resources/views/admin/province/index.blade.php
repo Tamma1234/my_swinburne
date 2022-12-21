@@ -29,7 +29,7 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Name</th>
-                                <th>type</th>
+                                <th>Type</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>

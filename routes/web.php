@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\WardsController;
+use App\Http\Controllers\Admin\ExamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,8 +73,8 @@ Route::middleware('auth')->group(function () {
             Route::get('delete-completely/{id}', [StudentUserController::class, 'deleteCompletely'])->name('student.delete.completely');
         });
 
-        Route::group(['prefix' => 'exam'], function () {
-            Route::get('/', [QuestionController::class, 'question'])->name('exam.question');
+        Route::group(['prefix' => 'question'], function () {
+            Route::get('/', [QuestionController::class, 'question'])->name('question.question');
             Route::get('/create', [QuestionController::class, 'create'])->name('question.create');
             Route::post('/store', [QuestionController::class, 'store'])->name('question.store');
             Route::get('/edit', [QuestionController::class, 'edit'])->name('question.edit');
@@ -82,6 +83,18 @@ Route::middleware('auth')->group(function () {
             Route::get('user-trashout', [QuestionController::class, 'userTrashOut'])->name('question.trash');
             // Delete user completely
             Route::get('delete-completely/{id}', [QuestionController::class, 'deleteCompletely'])->name('question.delete.completely');
+        });
+
+        Route::group(['prefix' => 'exam'], function () {
+            Route::get('/', [ExamController::class, 'index'])->name('exam.index');
+            Route::get('/create', [ExamController::class, 'create'])->name('exam.create');
+            Route::post('/store', [ExamController::class, 'store'])->name('exam.store');
+//            Route::get('/edit', [QuestionController::class, 'edit'])->name('question.edit');
+//            Route::post('/update/{id}', [QuestionController::class, 'update'])->name('question.update');
+//            Route::get('delete/{id}', [QuestionController::class, 'delete'])->name('question.delete');
+//            Route::get('user-trashout', [QuestionController::class, 'userTrashOut'])->name('question.trash');
+//            // Delete user completely
+//            Route::get('delete-completely/{id}', [QuestionController::class, 'deleteCompletely'])->name('question.delete.completely');
         });
 
         Route::group(['prefix' => 'answers'], function () {

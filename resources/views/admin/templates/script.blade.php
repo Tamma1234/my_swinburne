@@ -165,12 +165,13 @@
 <!--end::Page Vendors -->
 
 <!--begin::Page Scripts(used by this page) -->
-<script src="{{asset('assets/admin/js/pages/dashboard.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/js/pages/dashboard.js')}}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
+
     @if (session('msg-update'))
     swal("Notification", "{{ session('msg-update') }}!", "success");
     @endif;
@@ -264,4 +265,6 @@
             });
         })
     });
+
+
 </script>

@@ -11,21 +11,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
-class QuestionController extends Controller
+class QuestionController extends ExamController
 {
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function question() {
         $questions = Question::orderBy('id', 'asc')->paginate(15);
-        return view('admin.exam.index', compact('questions'));
+        return view('admin.question.index', compact('questions'));
     }
 
     /**
      * @return void
      */
     public function create() {
-       return view('admin.exam.question-create');
+       return view('admin.question.question-create');
     }
 
     /**
@@ -46,7 +46,7 @@ class QuestionController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('exam.question')->with('msg-create', 'Create Question Successfuly');
+            return redirect()->route('question.question')->with('msg-create', 'Create Question Successfuly');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message :' . $exception->getMessage() . '--GetLine' . $exception->getLine());
@@ -61,7 +61,7 @@ class QuestionController extends Controller
         $question = Question::find($request->id);
         $answers = $question->answers;
 
-        return view('admin.exam.question-edit', compact('question', 'answers'));
+        return view('admin.question.question-edit', compact('question', 'answers'));
     }
 
     /**
@@ -79,7 +79,7 @@ class QuestionController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('exam.question')->with('msg-update', 'Update Question Successfuly');
+            return redirect()->route('question.question')->with('msg-update', 'Update Question Successfuly');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message :' . $exception->getMessage() . '--GetLine' . $exception->getLine());
@@ -95,7 +95,7 @@ class QuestionController extends Controller
         $question = Question::find($request->id);
         $question->delete();
 
-        return redirect()->route('exam.question')->with('msg-delete', 'Delete the Question and cancel in the trash');
+        return redirect()->route('question.question')->with('msg-delete', 'Delete the Question and cancel in the trash');
     }
 
     /**
@@ -105,7 +105,7 @@ class QuestionController extends Controller
      */
     public function userTrashOut(Request $request) {
         $question = Question::onlyTrashed()->get();
-        return view('admin.exam.question-trash', compact('question'));
+        return view('admin.question.question-trash', compact('question'));
     }
 
     /**

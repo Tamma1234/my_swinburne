@@ -38,6 +38,7 @@
 <link href="{{ asset('assets/css/pages/login/login-5.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/css/pages/login/login-6.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/css/pages/login/login-3.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/css/virtual-select.min.css') }}" rel="stylesheet" type="text/css" />
 
 <style>
     .custom-checkbox {

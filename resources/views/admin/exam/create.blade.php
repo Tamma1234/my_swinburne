@@ -17,32 +17,38 @@
                         </div>
                     </div>
                     <!--begin::Form-->
-                    <form class="kt-form kt-form--label-right" action="{{ route('question.store') }}"
+                    <form class="kt-form kt-form--label-right" action="{{ route('exam.store') }}"
                           enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="kt-portlet__body">
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label>Question Name:</label>
-                                    <input type="text" name="question_type_name" class="form-control"
-                                           id="exampleInputEmail1"
-                                           placeholder="Enter Question Type Name" >
+                                    <label>Date:</label>
+                                    <input type="date" name="date_test" class="form-control"
+                                           placeholder="Enter Name" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label>Type Test:</label>
+                                    <select class="form-control" name="time_id">
+                                        <option value="">Choose Type</option>
+                                        @foreach($group_test as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label>Question Content:</label>
-                                    <input type="text" name="question_content" class="form-control"
-                                           id="exampleInputEmail1"
-                                           placeholder="Enter Question Content" >
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label>File Image:</label>
-                                    <input type="text" name="file_image" class="form-control"
-                                           placeholder="Enter File Image" >
+                                    <label>Question:</label>
+                                    <select multiple placeholder="Question Select" name="question_id[]"
+                                            data-search="true" data-silent-initial-value-set="true" id="multipleSelect">
+                                        <option value="">Choose Question</option>
+                                        @foreach($questions as $item)
+                                            <option value="{{ $item->id }}">{{ $item->question_content }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +57,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="{{route('exam.question')}}" class="btn btn-secondary">Cancel</a>
+                                        <a href="{{route('province.index')}}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -63,4 +69,12 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('assets/js/virtual-select.min.js') }}" type="text/javascript"></script>
+    <script>
+        VirtualSelect.init({
+            ele: '#multipleSelect'
+        });
+    </script>
 @endsection
