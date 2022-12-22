@@ -40,14 +40,25 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label>Question Test:</label>
+                                    <select class="form-control question" name="question_type" >
+                                        <option value="">Choose Question Type</option>
+                                        @foreach($questionType as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-lg-12">
                                     <label>Question:</label>
                                     <select multiple placeholder="Question Select" name="question_id[]"
                                             data-search="true" data-silent-initial-value-set="true" id="multipleSelect">
                                         <option value="">Choose Question</option>
-                                        @foreach($questions as $item)
-                                            <option value="{{ $item->id }}">{{ $item->question_content }}</option>
-                                        @endforeach
+{{--                                        @foreach($questions as $item)--}}
+{{--                                            <option value="{{ $item->id }}">{{ $item->question_content }}</option>--}}
+{{--                                        @endforeach--}}
                                     </select>
                                 </div>
                             </div>
@@ -73,6 +84,25 @@
 @section('script')
     <script src="{{ asset('assets/js/virtual-select.min.js') }}" type="text/javascript"></script>
     <script>
+        $(document).ready(function () {
+            $('.question').on('change', function () {
+                var id =  $(this).val();
+                var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url: "{{ route('exam.get') }}",
+                    method: 'POST',
+                    data: { id:id, _token:_token },
+                    success:function (data) {
+                        let d = "";
+                        $.each(data, function (k, v) {
+                           d += '<option value="'+k["id"]+'">'+v["question_content"]+'</option>'
+                        })
+                      $('#multipleSelect').html(d);
+                    }
+                });
+            })
+        })
         VirtualSelect.init({
             ele: '#multipleSelect'
         });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Exam;
 use App\Models\GroupTest;
 use App\Models\Question;
+use App\Models\QuestionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -22,11 +23,14 @@ class ExamController extends Controller
     {
         $group_test = GroupTest::all();
         $questions = Question::all();
-        return view('admin.exam.create', compact('group_test', 'questions'));
+        $questionType = QuestionType::all();
+
+        return view('admin.exam.create', compact('group_test', 'questions', 'questionType'));
     }
 
     public function store(Request $request)
     {
+        dd($request->all());
         $exams = new Exam();
         $exam = $exams->create([
             'date_test' => $request->date_test,
@@ -36,5 +40,13 @@ class ExamController extends Controller
 
         return redirect()->route('exam.index')->with('msg-add', 'Create Exam Successfully');
 
+    }
+
+    public function getQuestion(Request $request)
+    {
+        $id = $request->id;
+        $question = Question::where('question_type', $id)->orderby('id', 'ASC')->get();
+
+        return response()->json($question);
     }
 }

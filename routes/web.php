@@ -88,6 +88,7 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => 'exam'], function () {
             Route::get('/', [ExamController::class, 'index'])->name('exam.index');
             Route::get('/create', [ExamController::class, 'create'])->name('exam.create');
+            Route::post('/get-question', [ExamController::class, 'getQuestion'])->name('exam.get');
             Route::post('/store', [ExamController::class, 'store'])->name('exam.store');
 //            Route::get('/edit', [QuestionController::class, 'edit'])->name('question.edit');
 //            Route::post('/update/{id}', [QuestionController::class, 'update'])->name('question.update');

@@ -327,7 +327,7 @@
                                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                                     class="kt-menu__link-text">Index</span></a></li>
                                         <li class="kt-menu__item " aria-haspopup="true"><a
-                                                href="{{ route('province.create') }}" class="kt-menu__link "><i
+                                                href="{{ route('exam.create') }}" class="kt-menu__link "><i
                                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                                     class="kt-menu__link-text">Create</span></a></li> <li class="kt-menu__item " aria-haspopup="true"><a
                                                 href="{{ route('province.trash') }}" class="kt-menu__link "><i
