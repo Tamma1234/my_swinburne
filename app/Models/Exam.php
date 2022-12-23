@@ -13,10 +13,15 @@ class Exam extends Model
 
     protected $fillable = [
         'date_test',
-        'time_id'
+        'time_id',
+        'question_type'
     ];
 
     public function questions() {
         return $this->belongsToMany(Question::class, 'exam_question', 'exam_id', 'question_id');
+    }
+
+    public function groups() {
+        return $this->belongsTo(GroupTest::class, 'time_id', 'id');
     }
 }

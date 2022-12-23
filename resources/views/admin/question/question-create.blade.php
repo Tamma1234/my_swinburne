@@ -12,7 +12,7 @@
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                Create Exam Form Layout
+                                Create Question Form Layout
                             </h3>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                         <div class="kt-portlet__body">
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label>Question Name:</label>
+                                    <label>Question Type:</label>
                                     <input type="text" name="question_type_name" class="form-control"
                                            id="exampleInputEmail1"
                                            placeholder="Enter Question Type Name" >
@@ -41,7 +41,7 @@
                             <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label>File Image:</label>
-                                    <input type="text" name="file_image" class="form-control"
+                                    <input type="file" name="file_image" class="form-control"
                                            placeholder="Enter File Image" >
                                 </div>
                             </div>

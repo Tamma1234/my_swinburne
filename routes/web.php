@@ -90,8 +90,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/create', [ExamController::class, 'create'])->name('exam.create');
             Route::post('/get-question', [ExamController::class, 'getQuestion'])->name('exam.get');
             Route::post('/store', [ExamController::class, 'store'])->name('exam.store');
-//            Route::get('/edit', [QuestionController::class, 'edit'])->name('question.edit');
-//            Route::post('/update/{id}', [QuestionController::class, 'update'])->name('question.update');
+            Route::get('/edit', [ExamController::class, 'edit'])->name('exam.edit');
+            Route::post('/update/{id}', [ExamController::class, 'update'])->name('exam.update');
+            Route::post('/detail/{id}', [ExamController::class, 'detail'])->name('exam.detail');
 //            Route::get('delete/{id}', [QuestionController::class, 'delete'])->name('question.delete');
 //            Route::get('user-trashout', [QuestionController::class, 'userTrashOut'])->name('question.trash');
 //            // Delete user completely

@@ -12,20 +12,21 @@
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                Create Exam Form Layout
+                                Edit Exam Form Layout
                             </h3>
                         </div>
                     </div>
                     <!--begin::Form-->
-                    <form class="kt-form kt-form--label-right" action="{{ route('exam.store') }}"
+                    <form class="kt-form kt-form--label-right" action="{{ route('exam.update', ['id' => $exam->id]) }}"
                           enctype="multipart/form-data" method="POST">
                         @csrf
+                        <input type="hidden" value="{{ $exam->id }}" id="exam_id">
                         <div class="kt-portlet__body">
                             <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label>Date:</label>
-                                    <input type="date" name="date_test" class="form-control"
-                                           placeholder="Enter Name">
+                                    <input type="date" name="name" class="form-control"
+                                           placeholder="Enter Name" value="{{ $exam->date_test }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -34,7 +35,7 @@
                                     <select class="form-control" name="time_id">
                                         <option value="">Choose Type</option>
                                         @foreach($group_test as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            <option {{ $exam->time_id == $item->id ? "selected" : "" }} value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -45,7 +46,7 @@
                                     <select class="form-control question" name="question_type">
                                         <option value="">Choose Question Type</option>
                                         @foreach($questionType as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            <option {{ $exam->question_type == $item->id ? "selected" : "" }} value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -60,6 +61,7 @@
                                     {{--                                        --}}{{--                                            <option value="{{ $item->id }}">{{ $item->question_content }}</option>--}}
                                     {{--                                        --}}{{--                                        @endforeach--}}
                                     {{--                                    </select>--}}
+
                                 </div>
                             </div>
                         </div>

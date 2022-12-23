@@ -7,7 +7,7 @@
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Table Exam Options
+                Table Question Options
             </h3>
         </div>
         <div class="col-md-6 col-4 align-self-center">

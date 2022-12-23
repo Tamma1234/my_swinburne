@@ -23,10 +23,10 @@
                 <thead >
                     <tr>
                         <th>ID</th>
-                        <th>Type Exam</th>
                         <th>Date</th>
+                        <th>Type Exam</th>
                         <th>Time</th>
-                        <th class="text-nowrap"></th>
+                        <th class="text-nowrap">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,15 +34,18 @@
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->date_test}}</td>
-                            <td>{{$item->time_id}}</td>
-                            <td>{{$item->time_id}}</td>
-{{--                            <td class="text-nowrap">--}}
-{{--                                <a href="{{ route('question.edit', ['id' => $item->id]) }}" data-toggle="tooltip"--}}
-{{--                                   data-original-title="Edit"><i class="flaticon-edit"></i>--}}
-{{--                                </a>--}}
-{{--                                <a href="{{ route('question.delete', ['id' => $item->id]) }}" data-toggle="tooltip"--}}
-{{--                                   data-original-title="Close"> <i class="flaticon-delete"></i> </a>--}}
-{{--                            </td>--}}
+                            <td>{{$item->groups ? $item->groups->name : ""}}</td>
+                            <td>{{$item->groups ? $item->groups->time : ""}}</td>
+                            <td class="text-nowrap">
+                                <a href="{{ route('exam.edit', ['id' => $item->id]) }}" data-toggle="tooltip"
+                                   data-original-title="Edit"><i class="flaticon-edit"></i>
+                                </a>
+                                <a href="{{ route('exam.detail', ['id' => $item->id]) }}" data-toggle="tooltip"
+                                   data-original-title="Edit"><i class="flaticon2-indent-dots"></i>
+                                </a>
+                                <a href="{{ route('question.delete', ['id' => $item->id]) }}" data-toggle="tooltip"
+                                   data-original-title="Close"> <i class="flaticon-delete"></i> </a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
