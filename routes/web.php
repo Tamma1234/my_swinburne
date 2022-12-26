@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
 
         Route::group(['prefix' => 'question'], function () {
             Route::get('/', [QuestionController::class, 'question'])->name('question.question');
+            Route::post('/list', [QuestionController::class, 'selectQuestion'])->name('question.select');
             Route::get('/create', [QuestionController::class, 'create'])->name('question.create');
             Route::post('/store', [QuestionController::class, 'store'])->name('question.store');
             Route::get('/edit', [QuestionController::class, 'edit'])->name('question.edit');

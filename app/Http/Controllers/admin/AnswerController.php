@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Answers;
 use App\Models\Question;
+use App\Models\QuestionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -24,7 +25,9 @@ class AnswerController extends Controller
      */
     public function create() {
         $questions = Question::all();
-        return view('admin.answers.create', compact('questions'));
+        $questionType = QuestionType::all();
+
+        return view('admin.answers.create', compact('questions', 'questionType'));
     }
 
     /**

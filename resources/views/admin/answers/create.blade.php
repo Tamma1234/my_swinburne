@@ -25,17 +25,17 @@
                                 <div class="col-lg-6">
                                     <label>Answers Name:</label>
                                     <input type="text" name="answers" class="form-control"
-                                           id="exampleInputEmail1"
+                                           id="answers"
                                            placeholder="Enter Question Type Name" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <label>Question Name:</label>
-                                    <select class="form-control" name="question_id-name">
-                                        <option value="">Choose Question</option>
-                                        @foreach($questions as $item)
-                                            <option value="{{ $item->id }}">{{ $item->question_type_name }}</option>
+                                    <select class="form-control choose" id="question" name="question_id-name">
+                                        <option value="">Choose Question Type</option>
+                                        @foreach($questionType as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -43,7 +43,7 @@
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <label>Question Content:</label>
-                                    <select class="form-control" name="question_id-name">
+                                    <select class="form-control choose" id="question_content" name="question_id">
                                         <option value="">Choose Question</option>
                                         @foreach($questions as $item)
                                             <option value="{{ $item->id }}">{{ $item->question_content }}</option>
@@ -76,4 +76,30 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('.choose').on('change', function () {
+                var action = $(this).attr('id');
+                var id = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                var result = "";
+
+                if (action == 'question') {
+                    result = "question_content";
+                } else {
+                    result = "answers";
+                }
+                $.ajax({
+                    url: "{{ route('question.select') }}",
+                    method: 'POST',
+                    data: {action: action, id: id, _token: _token},
+                    success: function (data) {
+                        $('#' + result).html(data);
+                    }
+                });
+            })
+        });
+    </script>
 @endsection

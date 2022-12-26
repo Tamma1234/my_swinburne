@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
+use App\Models\Answers;
 use App\Models\Question;
+use App\Models\QuestionType;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,11 +23,31 @@ class QuestionController extends ExamController
         return view('admin.question.index', compact('questions'));
     }
 
+    public function selectQuestion(Request $request) {
+        $data = $request->all();
+        if ($data['action']) {
+            $output = "";
+            if ($data['action'] == 'question') {
+                $question = Question::where('question_type', $data['id'])->get();
+                foreach ($question as $item) {
+                    $output.='<option value="'.$item->id.'">'.$item->question_content.'</option>';
+                }
+            } else {
+                $answers = Answers::where('id', $data['id'])->get();
+                foreach ($answers as $item) {
+                    $output.='<option value="'.$item->id.'">'.$item->name.'</option>';
+                }
+            }
+        }
+    return $output;
+    }
+
     /**
      * @return void
      */
     public function create() {
-       return view('admin.question.question-create');
+        $questionType = QuestionType::all();
+        return view('admin.question.question-create');
     }
 
     /**
