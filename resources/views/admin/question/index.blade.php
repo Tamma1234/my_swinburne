@@ -31,10 +31,11 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php echo $i = 1 ?>
                     @foreach($questions as $item)
                         <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->question_type_name}}</td>
+                            <td>{{$i++}}</td>
+                            <td>{{$item->questionType ? $item->questionType->name : ""}}</td>
                             <td>{{$item->question_content}}</td>
                             <td>{{$item->file_image}}</td>
                             <td>{{$item->type_answers}}</td>
