@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\District;
 use App\Models\Province;
+use App\Models\Questions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -95,7 +96,7 @@ class ProvinceController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function studentTrashOut (Request $request) {
+    public function provinceTrashOut (Request $request) {
         $provinces = Province::onlyTrashed()->get();
         return view('admin.province.trash', compact('provinces'));
     }
@@ -107,6 +108,15 @@ class ProvinceController extends Controller
      */
     public function deleteCompletely(Request $request) {
         Province::withTrashed()->where('id', $request->id)->forceDelete();
-        return redirect()->route('district.trash')->with('msg-trash', 'Delete Account Successfully');
+        return redirect()->route('province.trash')->with('msg-trash', 'Delete Province Successfully');
+    }
+
+    /**
+     * @return void
+     */
+    public function restore(Request $request) {
+        $province = Province::withTrashed()->where('id', $request->id)->restore();
+
+        return redirect()->route('province.index')->with('msg-add', 'Restore the Province Successfully');
     }
 }

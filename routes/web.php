@@ -57,6 +57,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
             Route::post('/update/{id}', [UserController::class, 'update'])->name('users.update');
             Route::get('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+            Route::get('restore/{id}', [UserController::class, 'restore'])->name('users.restore');
             Route::get('user-trashout', [UserController::class, 'userTrashOut'])->name('users.trash');
             // Delete user completely
             Route::get('delete-completely/{id}', [UserController::class, 'deleteCompletely'])->name('users.delete.completely');
@@ -68,6 +69,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{id}', [StudentUserController::class, 'edit'])->name('student.edit');
             Route::post('/update/{id}', [StudentUserController::class, 'update'])->name('student.update');
             Route::get('delete/{id}', [StudentUserController::class, 'delete'])->name('student.delete');
+            Route::get('restore/{id}', [StudentUserController::class, 'restore'])->name('student.restore');
             Route::get('user-trashout', [StudentUserController::class, 'studentTrashOut'])->name('student.trash');
             // Delete user completely
             Route::get('delete-completely/{id}', [StudentUserController::class, 'deleteCompletely'])->name('student.delete.completely');
@@ -81,6 +83,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit', [QuestionController::class, 'edit'])->name('question.edit');
             Route::post('/update/{id}', [QuestionController::class, 'update'])->name('question.update');
             Route::get('delete/{id}', [QuestionController::class, 'delete'])->name('question.delete');
+            Route::get('restore/{id}', [QuestionController::class, 'restore'])->name('question.restore');
             Route::get('user-trashout', [QuestionController::class, 'userTrashOut'])->name('question.trash');
             // Delete user completely
             Route::get('delete-completely/{id}', [QuestionController::class, 'deleteCompletely'])->name('question.delete.completely');
@@ -94,10 +97,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit', [ExamController::class, 'edit'])->name('exam.edit');
             Route::post('/update/{id}', [ExamController::class, 'update'])->name('exam.update');
             Route::post('/detail/{id}', [ExamController::class, 'detail'])->name('exam.detail');
-//            Route::get('delete/{id}', [QuestionController::class, 'delete'])->name('question.delete');
-//            Route::get('user-trashout', [QuestionController::class, 'userTrashOut'])->name('question.trash');
+            Route::get('delete/{id}', [ExamController::class, 'delete'])->name('exam.delete');
+            Route::get('restore/{id}', [ExamController::class, 'restore'])->name('exam.restore');
+            Route::get('exam-trashout', [ExamController::class, 'examTrashOut'])->name('exam.trash');
 //            // Delete user completely
-//            Route::get('delete-completely/{id}', [QuestionController::class, 'deleteCompletely'])->name('question.delete.completely');
+            Route::get('delete-completely/{id}', [ExamController::class, 'deleteCompletely'])->name('exam.delete.completely');
         });
 
         Route::group(['prefix' => 'answers'], function () {
@@ -119,7 +123,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit', [ProvinceController::class, 'edit'])->name('province.edit');
             Route::post('/update/{id}', [ProvinceController::class, 'update'])->name('province.update');
             Route::get('delete/{id}', [ProvinceController::class, 'delete'])->name('province.delete');
-            Route::get('user-trashout', [ProvinceController::class, 'provinceTrashOut'])->name('province.trash');
+            Route::get('restore/{id}', [ProvinceController::class, 'restore'])->name('province.restore');
+            Route::get('province-trashout', [ProvinceController::class, 'provinceTrashOut'])->name('province.trash');
             // Delete user completely
             Route::get('delete-completely/{id}', [ProvinceController::class, 'deleteCompletely'])->name('province.delete.completely');
         });
@@ -131,6 +136,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{id}', [DistrictController::class, 'edit'])->name('district.edit');
             Route::post('/update/{id}', [DistrictController::class, 'update'])->name('district.update');
             Route::get('delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
+            Route::get('restore/{id}', [DistrictController::class, 'restore'])->name('district.restore');
             Route::get('district-trashout', [DistrictController::class, 'districtTrashOut'])->name('district.trash');
             // Delete user completely
             Route::get('delete-completely/{id}', [DistrictController::class, 'deleteCompletely'])->name('district.delete.completely');

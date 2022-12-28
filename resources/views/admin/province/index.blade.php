@@ -43,7 +43,7 @@
                                         <a href="{{ route('province.edit', ['id' => $item->id]) }}" data-toggle="tooltip"
                                            data-original-title="Edit"><i class="flaticon-edit"></i>
                                         </a>
-                                        <a href="{{ route('province.trash', ['id' => $item->id]) }}" data-toggle="tooltip"
+                                        <a href="{{ route('province.delete', ['id' => $item->id]) }}" data-toggle="tooltip"
                                            data-original-title="Close"> <i class="flaticon-delete"></i> </a>
                                     </td>
                                 </tr>

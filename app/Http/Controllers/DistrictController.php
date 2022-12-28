@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\District;
+use App\Models\Exam;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -110,5 +111,14 @@ class DistrictController extends Controller
     public function deleteCompletely(Request $request) {
         District::withTrashed()->where('id', $request->id)->forceDelete();
         return redirect()->route('district.trash')->with('msg-trash', 'Delete District Successfully');
+    }
+
+    /**
+     * @return void
+     */
+    public function restore(Request $request) {
+        $district = District::withTrashed()->where('id', $request->id)->restore();
+
+        return redirect()->route('district.index')->with('msg-add', 'Restore the District Successfully');
     }
 }

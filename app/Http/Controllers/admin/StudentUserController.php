@@ -144,4 +144,16 @@ class StudentUserController extends Controller
         StudentUser::withTrashed()->where('id', $request->id)->forceDelete();
         return redirect()->route('student.trash')->with('msg-trash', 'Delete Account Successfully');
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restore(Request $request) {
+        $studenUser = StudentUser::withTrashed()->where('id', $request->id)->restore();
+
+        return redirect()->route('admin.dashboard')->with('msg-add', 'Restore the Account Successfully');
+    }
+
+
 }

@@ -40,10 +40,7 @@
                                 <a href="{{ route('exam.edit', ['id' => $item->id]) }}" data-toggle="tooltip"
                                    data-original-title="Edit"><i class="flaticon-edit"></i>
                                 </a>
-                                <a href="{{ route('exam.detail', ['id' => $item->id]) }}" data-toggle="tooltip"
-                                   data-original-title="Edit"><i class="flaticon2-indent-dots"></i>
-                                </a>
-                                <a href="{{ route('question.delete', ['id' => $item->id]) }}" data-toggle="tooltip"
+                                <a href="{{ route('exam.delete', ['id' => $item->id]) }}" data-toggle="tooltip"
                                    data-original-title="Close"> <i class="flaticon-delete"></i> </a>
                             </td>
                         </tr>

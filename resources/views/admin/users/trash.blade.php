@@ -35,8 +35,8 @@
                             <td>{{$user->address}}</td>
                             <td>{{$user->phone_number}}</td>
                             <td class="text-nowrap">
-                                <a href="{{route('users.delete.completely', ['id' => $user->id])}}" data-toggle="tooltip"
-                                   data-original-title="Close"> <i class="flaticon-delete"></i> </a>
+                                <a href="{{route('users.restore', ['id' => $user->id])}}" data-toggle="tooltip"
+                                   data-original-title="Close"> <i class="flaticon2-refresh-1"></i> </a>
                             </td>
                         </tr>
                     @endforeach

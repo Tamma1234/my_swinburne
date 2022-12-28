@@ -42,8 +42,8 @@
                                     <td>{{$item->type}}</td>
                                     <td>{{$item->provinces ? $item->provinces->name : ""}}</td>
                                     <td class="text-nowrap">
-                                        <a href="{{ route('district.edit', ['id' => $item->id]) }}" data-toggle="tooltip"
-                                           data-original-title="Edit"><i class="flaticon-edit"></i>
+                                        <a href="{{ route('district.restore', ['id' => $item->id]) }}" data-toggle="tooltip"
+                                           data-original-title="Edit"><i class="flaticon2-refresh-1"></i>
                                         </a>
                                         {{--                                        <a href="{{ route('province.trash', ['id' => $item->id]) }}" data-toggle="tooltip"--}}
                                         {{--                                           data-original-title="Close"> <i class="flaticon-delete"></i> </a>--}}

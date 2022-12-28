@@ -42,7 +42,7 @@
                                     <a href="{{route('users.edit', ['id' => $user->id])}}" data-toggle="tooltip"
                                        data-original-title="Edit"><i class="flaticon-edit"></i>
                                     </a>
-                                    <a href="{{route('users.trash', ['id' => $user->id])}}" data-toggle="tooltip"
+                                    <a href="{{route('users.delete', ['id' => $user->id])}}" data-toggle="tooltip"
                                        data-original-title="Close"> <i class="flaticon-delete"></i> </a>
                                 </td>
                             </tr>

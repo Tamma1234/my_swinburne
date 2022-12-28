@@ -126,7 +126,7 @@ class UserController extends Controller
         $user = User::find($request->id);
         $user->delete();
 
-        return redirect()->route('admin.dashboard')->with('msg-delete', 'Delete the Users and cancel in the trash');
+        return redirect()->route('users.index')->with('msg-delete', 'Delete the Users and cancel in the trash');
     }
 
     /**
@@ -147,5 +147,15 @@ class UserController extends Controller
     public function deleteCompletely(Request $request) {
         User::withTrashed()->where('id', $request->id)->forceDelete();
         return redirect()->route('users.trash')->with('msg-trash', 'Delete Account Successfully');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restore(Request $request) {
+        $user = User::withTrashed()->where('id', $request->id)->restore();
+
+        return redirect()->route('users.index')->with('msg-add', 'Restore the User Successfully');
     }
 }

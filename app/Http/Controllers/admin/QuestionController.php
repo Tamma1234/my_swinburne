@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\Answers;
+use App\Models\District;
 use App\Models\Question;
 use App\Models\Questions;
 use App\Models\QuestionType;
@@ -32,7 +33,7 @@ class QuestionController extends ExamController
         if ($data['action']) {
             $output = "";
             if ($data['action'] == 'question') {
-                $question = Question::where('question_type', $data['id'])->get();
+                $question = Questions::where('question_type', $data['id'])->get();
                 foreach ($question as $item) {
                     $output .= '<option value="' . $item->id . '">' . $item->question_content . '</option>';
                 }
@@ -110,35 +111,46 @@ class QuestionController extends ExamController
      */
     public function update(Request $request)
     {
-//        try {
-//            DB::beginTransaction();
-        $question = Questions::find($request->id);
-        $question->update([
-            'question_type' => $request->question_type,
-            'question_content' => $request->question_content,
-            'file_image' => $request->file_image,
-        ]);
 
-        $questionAnswers = Questions::where('parent_id', $request->id)->get();
-        $output = "";
-        foreach ($questionAnswers as $item) {
-            $id = $item->id;
-            $questionAnswer = Questions::find($id);
+        try {
+            DB::beginTransaction();
+            $question = Questions::find($request->id);
+            $question->update([
+                'question_type' => $request->question_type,
+                'question_content' => $request->question_content,
+                'file_image' => $request->file_image,
+            ]);
+            $answerQuestion = Questions::where('parent_id', $request->id)
+                ->select('id', 'question_content')
+                ->pluck('question_content', 'id')
+                ->toArray();
             $answers = $request->answers;
-            for ($i = 0; $i < count($answers); $i++) {
-                $questionAnswer->update([
+            $notAnswer = array_diff($answers, $answerQuestion);
+            if (!empty($notAnswer)) {
+               $questionAnswer = new Questions();
+               foreach ($notAnswer as $key => $value) {
+                   $questionAnswer->insert([
+                       'question_type' => $request->question_type,
+                       'question_content' => $value,
+                       'parent_id' => $request->id
+                   ]);
+               }
+            }
+            foreach ($answers as $key => $val) {
+                $answer = Questions::find($key);
+                $answer->update([
                     'question_type' => $request->question_type,
-                    'question_content' => $answers[$i],
+                    'question_content' => $val,
                     'parent_id' => $request->id
                 ]);
             }
+
+            DB::commit();
+            return redirect()->route('question.question')->with('msg-update', 'Update Question Successfuly');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('Message :' . $exception->getMessage() . '--GetLine' . $exception->getLine());
         }
-//            DB::commit();
-        return redirect()->route('question.question')->with('msg-update', 'Update Question Successfuly');
-//        } catch (\Exception $exception) {
-//            DB::rollBack();
-//            Log::error('Message :' . $exception->getMessage() . '--GetLine' . $exception->getLine());
-//        }
     }
 
     /**
@@ -148,7 +160,7 @@ class QuestionController extends ExamController
      */
     public function delete(Request $request)
     {
-        $question = Question::find($request->id);
+        $question = Questions::find($request->id);
         $question->delete();
 
         return redirect()->route('question.question')->with('msg-delete', 'Delete the Question and cancel in the trash');
@@ -161,7 +173,7 @@ class QuestionController extends ExamController
      */
     public function userTrashOut(Request $request)
     {
-        $question = Question::onlyTrashed()->get();
+        $question = Questions::onlyTrashed()->get();
         return view('admin.question.question-trash', compact('question'));
     }
 
@@ -172,7 +184,16 @@ class QuestionController extends ExamController
      */
     public function deleteCompletely(Request $request)
     {
-        $question = Question::withTrashed()->where('id', $request->id)->forceDelete();
+        $question = Questions::withTrashed()->where('id', $request->id)->forceDelete();
         return redirect()->route('question.trash')->with('msg-trash', 'Delete Question Successfully');
+    }
+
+    /**
+     * @return void
+     */
+    public function restore(Request $request) {
+        $question = Questions::withTrashed()->where('id', $request->id)->restore();
+
+        return redirect()->route('question.question')->with('msg-add', 'Restore the Question Successfully');
     }
 }

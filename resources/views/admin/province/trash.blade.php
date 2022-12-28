@@ -19,24 +19,21 @@
                     <thead class="thead-light">
                     <tr>
                         <th>ID</th>
-                        <th>Full Name</th>
-                        <th>Email </th>
-                        <th>Address</th>
-                        <th>Phone Number</th>
+                        <th>Name</th>
+                        <th>Type </th>
                         <th class="text-nowrap">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($students as $item)
+                    @foreach($provinces as $item)
                         <tr>
                             <td>{{$item->id}}</td>
-                            <td>{{$item->full_name}}</td>
-                            <td>{{$item->email}}</td>
-                            <td>{{$item->address}}</td>
-                            <td>{{$item->phone_number}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->type}}</td>
                             <td class="text-nowrap">
-                                <a href="{{route('student.delete.completely', ['id' => $item->id])}}" data-toggle="tooltip"
-                                   data-original-title="Close"> <i class="flaticon-delete"></i> </a>
+                                <a href="{{ route('province.restore', ['id' => $item->id]) }}" data-toggle="tooltip"
+                                   data-original-title="Edit"><i class="flaticon2-refresh-1"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

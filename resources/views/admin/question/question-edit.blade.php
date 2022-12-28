@@ -65,7 +65,7 @@
                                     <div class="form-group row" id="permission-row">
                                         @foreach($answers as $item)
                                             <div class="form-group col-md-6">
-                                                        <input type="text"  name="answers[]"
+                                                        <input type="text"  name="answers[{{ $item->id }}]"
                                                                class="form-control"
                                                                value="{{$item->question_content}}">
                                             </div>

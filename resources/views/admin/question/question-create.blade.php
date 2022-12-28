@@ -59,11 +59,20 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="kt-checkbox-list">
-                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--success">
-                                        <input class="checkbox_wraper custom-control-input" type="text">Answers
-                                    </label>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="card-border-primary mb-3 col-md-12">
+                                        <div class="row" id="modul-row">
+                                            <div class="kt-checkbox-list">
+                                                <label class="kt-checkbox kt-checkbox--solid kt-checkbox--success">
+                                                    <input class="checkbox_wraper custom-control-input" type="text">Answers
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="permission-row">
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <a type="button" onclick="createAnswers()" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -97,19 +106,17 @@
 @section('script')
     <script>
        function createAnswers() {
-           var answers = document.getElementById('answers');
+           var answers = document.getElementById('permission-row');
            var div = document.createElement('div');
-           div.setAttribute('class', 'form-group row')
-           var divCol = document.createElement('div');
-           divCol.setAttribute('class', 'col-lg-6')
+           div.setAttribute('class', 'form-group col-md-6')
            var create = document.createElement('input');
            create.setAttribute("class", "form-control");
            create.setAttribute("type", "text");
            create.setAttribute("name", "answers[]");
            create.setAttribute("placeholder", "Enter Answers");
 
-           divCol.appendChild(create);
-           div.appendChild(divCol);
+
+           div.appendChild(create);
            answers.appendChild(div);
        }
     </script>

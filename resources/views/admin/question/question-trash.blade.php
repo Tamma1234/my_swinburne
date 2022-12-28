@@ -35,11 +35,9 @@
                                 <td>{{$item->file_image}}</td>
                                 <td>{{$item->type_answers}}</td>
                                 <td class="text-nowrap">
-                                    <a href="{{ route('question.edit', ['id' => $item->id]) }}" data-toggle="tooltip"
-                                       data-original-title="Edit"><i class="flaticon-edit"></i>
+                                    <a href="{{ route('question.restore', ['id' => $item->id]) }}" data-toggle="tooltip"
+                                       data-original-title="Edit"><i class="flaticon2-refresh-1"></i>
                                     </a>
-                                    <a href="{{ route('question.delete', ['id' => $item->id]) }}" data-toggle="tooltip"
-                                       data-original-title="Close"> <i class="flaticon-delete"></i> </a>
                                 </td>
                             </tr>
                         @endforeach
