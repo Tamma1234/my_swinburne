@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StudentUserController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\AnswerController;
+use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\WardsController;
 use App\Http\Controllers\Admin\ExamController;
@@ -152,6 +153,19 @@ Route::middleware('auth')->group(function () {
             Route::get('wards-trashout', [WardsController::class, 'wardsTrashOut'])->name('wards.trash');
             // Delete user completely
             Route::get('delete-completely/{id}', [WardsController::class, 'deleteCompletely'])->name('wards.delete.completely');
+        });
+
+        Route::group(['prefix' => 'schools'], function () {
+            Route::get('/', [SchoolController::class, 'index'])->name('school.index');
+            Route::get('/create', [SchoolController::class, 'create'])->name('school.create');
+            Route::post('/store', [SchoolController::class, 'store'])->name('school.store');
+            Route::get('/edit/{id}', [SchoolController::class, 'edit'])->name('school.edit');
+            Route::post('/update/{id}', [SchoolController::class, 'update'])->name('school.update');
+            Route::get('restore/{id}', [SchoolController::class, 'restore'])->name('school.restore');
+            Route::get('delete/{id}', [SchoolController::class, 'delete'])->name('school.delete');
+            Route::get('school-trashout', [SchoolController::class, 'schoolTrashOut'])->name('school.trash');
+//            // Delete user completely
+            Route::get('delete-completely/{id}', [SchoolController::class, 'deleteCompletely'])->name('school.delete.completely');
         });
     });
     // Route phần admin

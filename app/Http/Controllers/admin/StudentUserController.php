@@ -154,6 +154,4 @@ class StudentUserController extends Controller
 
         return redirect()->route('admin.dashboard')->with('msg-add', 'Restore the Account Successfully');
     }
-
-
 }

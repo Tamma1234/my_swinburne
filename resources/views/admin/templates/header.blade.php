@@ -101,7 +101,7 @@
             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
 
                 <!--begin: Head -->
-                <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(assets/media/misc/bg-1.jpg)">
+                <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url({{ asset('assets/images/bg-1.jpg') }})">
                     <div class="kt-user-card__avatar">
                         <img class="kt-hidden" alt="Pic" src="assets/media/users/300_25.jpg" />
 
@@ -109,7 +109,7 @@
                         <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">{{ $firstName }}</span>
                     </div>
                     <div class="kt-user-card__name">
-                        Sean Stone
+                        {{ $full_name }}
                     </div>
 
                 </div>
